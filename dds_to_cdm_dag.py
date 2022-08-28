@@ -36,7 +36,7 @@ def dm_settlement_report ():
         LEFT JOIN dds.dm_restaurants dmr ON dmr.id = dmo.restaurant_id
         LEFT JOIN dds.dm_timestamps dmt ON dmt.id = dmo.timestamp_id
         WHERE dmo.order_status = 'CLOSED'
-    )
+    ) as tmp
     GROUP BY restaurant_id, restaurant_name, settlement_date
     ON CONFLICT ON CONSTRAINT dm_settlement_report_restaurant_and_date_uindex DO UPDATE 
     SET 
